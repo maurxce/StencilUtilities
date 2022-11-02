@@ -1,0 +1,5 @@
+name: StencilUtilities
+version: '1.0'
+main: me.lewd.stencilutilities.Main
+api-version: 1.19
+authors: [ 2lewd4u ]
