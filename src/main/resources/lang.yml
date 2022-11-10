@@ -1,0 +1,9 @@
+#   StencilUtilities - Messages
+
+no-permission: "&cSorry! You don't have permission to use this."
+too-few-args: "&cSorry! You didn't provide enough arguments."
+rank-name-too-long: "&cSorry! This name is too long"
+
+config-reloaded: "&aSuccessfully reloaded config!"
+
+set-rank: "&aSuccessfully set your rank to: &7%stencil_rank%"

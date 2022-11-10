@@ -1,6 +1,49 @@
-#   StencilUtilities
-#
-#   TextToReplace: Replacement
+#   StencilUtilities - Configuration
 
-"<3": "&c❤&f"
-":)": "☺"
+prefix: "&c&lStencil -"
+
+text-replace:
+  "<3": "&c❤&f"
+  ":)": "☺"
+
+
+blacklisted-rank-names:
+  - "fuck"
+  - "shit"
+  - "bitch"
+
+random-rank-names:
+  - "Legend"
+  - "Master"
+  - "Adventurer"
+  - "Traveller"
+
+ranks:
+  default:
+    allow-color-codes: false
+    allow-format-codes: false
+    include-codes-in-char-limit: true
+    default-color: "&7"
+    char-limit: 12
+    permission: stencil.rank.default
+  special:
+    allow-color-codes: true
+    allow-format-codes: false
+    include-codes-in-char-limit: true
+    default-color: "&f"
+    char-limit: 17
+    permission: stencil.rank.special
+  vip:
+    allow-color-codes: true
+    allow-format-codes: true
+    include-codes-in-char-limit: false
+    default-color: "&a"
+    char-limit: 20
+    permission: stencil.rank.vip
+
+
+features:
+  prefix: true
+  assign-rank-on-join: true
+  text-replace: true
+  ranks: true

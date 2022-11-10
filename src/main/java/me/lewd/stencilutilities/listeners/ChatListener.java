@@ -8,28 +8,38 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 
+import java.util.ArrayList;
 import java.util.Set;
 
 public class ChatListener implements Listener {
-    private final FileConfiguration config = Main.instance.getConfig();
     private final ChatUtils chatUtils = new ChatUtils();
+    private final FileConfiguration config = Main.instance.getConfig();
 
     @EventHandler
     public void onChat(AsyncPlayerChatEvent e) {
+        if (!config.getBoolean("features.text-replace")) return;
+
         Player player = e.getPlayer();
         String message = e.getMessage();
 
-        Set<String> textToReplace = config.getKeys(false);
+        Set<String> configKeys = config.getKeys(true);
+        ArrayList<String> keys = new ArrayList<String>();
 
-        for (String text : textToReplace) {
-            String replacement = chatUtils.translate(config.getString(text));
+        configKeys.forEach(key -> {
+            if (!key.startsWith("text-replace") || key.contentEquals("text-replace")) return;
+            keys.add(key);
+        });
+
+        for (String key : keys) {
+            String replace = key.replace("text-replace.", "");
+            String replacement = chatUtils.translate(config.getString(key));
 
             if (replacement == null) {
-                System.out.println("Replacement text for: \"" + text + "\" is NULL");
+                System.out.println("Replacement text for: \"" + replace + "\" is NULL");
                 return;
             }
 
-            message = message.replace(text, replacement);
+            message = message.replace(replace, replacement);
         }
 
         e.setMessage(message);
