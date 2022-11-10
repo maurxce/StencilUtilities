@@ -2,10 +2,10 @@
 
 ### Commands
 
-| Name     | Arguments     | Alias         | Description                                                                        |
-| -------- | ------------- | ------------- | ---------------------------------------------------------------------------------- |
-| /setrank | [name|random] |               | Sets a players rank either to the name provided or to a random one from the config |
-| /reload  |               | stencilreload | Reloads the config files                                                           |
+| Name     | Arguments     | Alias         | Description              |
+| -------- | ------------- | ------------- | ------------------------ |
+| /setrank | [name/random] |               | Sets a players rank      |
+| /reload  |               | stencilreload | Reloads the config files |
 
 
 ### Permissions
