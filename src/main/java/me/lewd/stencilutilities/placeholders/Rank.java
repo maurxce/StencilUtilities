@@ -42,6 +42,8 @@ public class Rank extends PlaceholderExpansion {
             if (response != null) return chatUtils.translate(response);
         }
 
+        if (params.equalsIgnoreCase("player")) return player.getName();
+
         return null;
     }
 }

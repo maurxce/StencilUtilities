@@ -20,6 +20,10 @@ commands:
     description: set own rank
     usage: /<command> [name|random]
     permission: stencil.setrank
+  delrank:
+    description: remove rank of player
+    usage: /<command> [player]
+    permission: stencil.delrank
 
 permissions:
   stencil.reload:
@@ -32,3 +36,6 @@ permissions:
   stencil.setrank.random:
     description: permission to set random rank
     default: true
+  stencil.delrank:
+    description: permission to remove rank
+    default: op

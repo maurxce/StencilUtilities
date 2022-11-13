@@ -1,6 +1,6 @@
 name: StencilUtilities
 prefix: StencilUtilities
-version: '1.1'
+version: '1.1.1'
 main: me.lewd.stencilutilities.Main
 api-version: 1.19
 authors: [ 2lewd4u ]
@@ -20,6 +20,10 @@ commands:
     description: set own rank
     usage: /<command> [name|random]
     permission: stencil.setrank
+  delrank:
+    description: remove rank of player
+    usage: /<command> [player]
+    permission: stencil.delrank
 
 permissions:
   stencil.reload:
@@ -32,3 +36,6 @@ permissions:
   stencil.setrank.random:
     description: permission to set random rank
     default: true
+  stencil.delrank:
+    description: permission to remove rank
+    default: op

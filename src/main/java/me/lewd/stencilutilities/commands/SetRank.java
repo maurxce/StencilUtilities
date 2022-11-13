@@ -76,7 +76,7 @@ public class SetRank implements CommandExecutor {
                 Set<String> configKeys = config.getKeys(true);
                 String rankInConfig = null; // e.g.: ranks.vip
                 for (String key: configKeys) {
-                    if (key.equals("ranks." + plainRankName)) rankInConfig = key;
+                    if (key.equals("ranks." + plainRankName.toLowerCase())) rankInConfig = key;
                 }
 
                 setRank(player, rawRankName, rankInConfig);
@@ -102,6 +102,9 @@ public class SetRank implements CommandExecutor {
         String defaultColor = config.getString(configLocation + ".default-color");
         int charLimit = config.getInt(configLocation + ".char-limit");
         String permission = config.getString(configLocation + ".permission");
+
+        // add default color in front
+        rawName = defaultColor + rawName;
 
         String rank = chatUtils.translateRank(rawName, defaultColor, allowColor, allowFormat);
 

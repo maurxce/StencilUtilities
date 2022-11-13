@@ -2,8 +2,10 @@
 
 no-permission: "&cSorry! You don't have permission to use this."
 too-few-args: "&cSorry! You didn't provide enough arguments."
-rank-name-too-long: "&cSorry! This name is too long"
+rank-name-too-long: "&cSorry! This name is too long."
+player-not-found: "&cSorry! We couldn't find this player."
 
 config-reloaded: "&aSuccessfully reloaded config!"
 
 set-rank: "&aSuccessfully set your rank to: &7%stencil_rank%"
+del-rank: "&aSuccessfully removed rank of %stencil_player%"

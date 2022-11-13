@@ -12,7 +12,7 @@ public class ChatUtils {
     }
     public String translateRank(String rawRank, String defaultColor, boolean color, boolean format) {
         if (!color) rawRank = rawRank.replaceAll("(&[a-fA-F\\d])", defaultColor);
-        if (!format) rawRank = rawRank.replaceAll("(&[k-o|r])", "");
+        if (!format) rawRank = rawRank.replaceAll("(&[k-o|r])", defaultColor);
 
         return ChatColor.translateAlternateColorCodes('&', rawRank);
     }

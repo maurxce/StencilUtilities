@@ -1,5 +1,6 @@
 package me.lewd.stencilutilities;
 
+import me.lewd.stencilutilities.commands.DelRank;
 import me.lewd.stencilutilities.commands.SetRank;
 import me.lewd.stencilutilities.commands.Reload;
 import me.lewd.stencilutilities.listeners.ChatListener;
@@ -37,6 +38,7 @@ public final class Main extends JavaPlugin {
         checkDependencies();
 
         initializeFiles();
+
         registerEvents();
         registerCommands();
     }
@@ -78,6 +80,7 @@ public final class Main extends JavaPlugin {
     private void registerCommands() {
         getCommand("reload").setExecutor(new Reload());
         getCommand("setrank").setExecutor(new SetRank());
+        getCommand("delrank").setExecutor(new DelRank());
     }
 
     private void registerPlaceholders() { new Rank().register(); }
