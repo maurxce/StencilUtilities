@@ -82,18 +82,24 @@ public class SetRank implements CommandExecutor {
                         rankPermission.add(key);
                     }
                 }
-                System.out.println("rP -> " + rankPermission);
 
                 for (int i = rankPermission.size() - 1; i >= 0; i--) {
+                    if (player.isOp()) {
+                        String rankInConfig = rankPermission.get(rankPermission.size() - 1).replace(".permission", "");
+
+                        setRank(player, rawRankName, rankInConfig);
+                        String setRank = chatUtils.translate(lang.getString("set-rank"));
+                        player.sendMessage(chatUtils.getPrefix() + PlaceholderAPI.setPlaceholders(player, setRank));
+                        return true;
+                    }
+
                     if (hasPermission(player, config.getString(rankPermission.get(i)))) {
                         String rankInConfig = rankPermission.get(i).replace(".permission", "");
 
                         setRank(player, rawRankName, rankInConfig);
                         String setRank = chatUtils.translate(lang.getString("set-rank"));
                         player.sendMessage(chatUtils.getPrefix() + PlaceholderAPI.setPlaceholders(player, setRank));
-                        break;
-                    } else {
-                        System.out.println("didnt make it -> " + rankPermission.get(i));
+                        return true;
                     }
                 }
                 return true;
