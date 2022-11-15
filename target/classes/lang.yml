@@ -6,6 +6,5 @@ rank-name-too-long: "&cSorry! This name is too long."
 player-not-found: "&cSorry! We couldn't find this player."
 
 config-reloaded: "&aSuccessfully reloaded config!"
-
 set-rank: "&aSuccessfully set your rank to: &7%stencil_rank%"
-del-rank: "&aSuccessfully removed rank of %stencil_player%"
+del-rank: "&aSuccessfully removed rank of &7%stencil_player%"

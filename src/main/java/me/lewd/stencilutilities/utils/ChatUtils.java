@@ -11,10 +11,10 @@ public class ChatUtils {
         return ChatColor.translateAlternateColorCodes('&', text);
     }
     public String translateRank(String rawRank, String defaultColor, boolean color, boolean format) {
-        if (!color) rawRank = rawRank.replaceAll("(&[a-fA-F\\d])", defaultColor);
-        if (!format) rawRank = rawRank.replaceAll("(&[k-o|r])", defaultColor);
+        if (!color) rawRank = rawRank.replaceAll("(&[a-fA-F\\d])", "");
+        if (!format) rawRank = rawRank.replaceAll("(&[k-o|r])", "");
 
-        return ChatColor.translateAlternateColorCodes('&', rawRank);
+        return ChatColor.translateAlternateColorCodes('&', defaultColor + rawRank);
     }
 
     public String getPrefix() {

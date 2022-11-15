@@ -34,6 +34,7 @@ public class DelRank implements CommandExecutor {
         // check args (0 => own rank, 1 => other)
         if (args.length <= 0 || player == Bukkit.getPlayer(args[0])) {
             ranks.set(player.getName(), null);
+            Main.instance.reloadConfigs();
 
             String deletedRank = chatUtils.translate(lang.getString("del-rank"));
             player.sendMessage(chatUtils.getPrefix() + PlaceholderAPI.setPlaceholders(player, deletedRank));
@@ -47,6 +48,8 @@ public class DelRank implements CommandExecutor {
             }
 
             ranks.set(target.getName(), null);
+            Main.instance.reloadConfigs();
+
             String deletedRank = chatUtils.translate(lang.getString("del-rank"));
             player.sendMessage(chatUtils.getPrefix() + PlaceholderAPI.setPlaceholders(target, deletedRank));
             return true;

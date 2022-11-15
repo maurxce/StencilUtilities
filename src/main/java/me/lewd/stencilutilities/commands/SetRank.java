@@ -8,6 +8,8 @@ import net.luckperms.api.model.data.DataMutateResult;
 import net.luckperms.api.model.user.User;
 import net.luckperms.api.model.user.UserManager;
 import net.luckperms.api.node.Node;
+import net.luckperms.api.node.NodeEqualityPredicate;
+import net.luckperms.api.util.Tristate;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -15,9 +17,7 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.List;
-import java.util.Random;
-import java.util.Set;
+import java.util.*;
 
 public class SetRank implements CommandExecutor {
     private ChatUtils chatUtils = new ChatUtils();
@@ -73,15 +73,29 @@ public class SetRank implements CommandExecutor {
                     if (plainRankName.contains(word)) return true;
                 }
 
+                // lowest permission comes first (e.g.: ranks.default.permission)
                 Set<String> configKeys = config.getKeys(true);
-                String rankInConfig = null; // e.g.: ranks.vip
-                for (String key: configKeys) {
-                    if (key.equals("ranks." + plainRankName.toLowerCase())) rankInConfig = key;
+                ArrayList<String> rankPermission = new ArrayList<String>();
+                rankPermission.add("ranks.default.permission");
+                for (String key : configKeys) {
+                    if (!Objects.equals(key, rankPermission.get(0)) && key.startsWith("ranks.") && key.endsWith(".permission")) {
+                        rankPermission.add(key);
+                    }
                 }
+                System.out.println("rP -> " + rankPermission);
 
-                setRank(player, rawRankName, rankInConfig);
-                String setRank = chatUtils.translate(lang.getString("set-rank"));
-                player.sendMessage(chatUtils.getPrefix() + PlaceholderAPI.setPlaceholders(player, setRank));
+                for (int i = rankPermission.size() - 1; i >= 0; i--) {
+                    if (hasPermission(player, config.getString(rankPermission.get(i)))) {
+                        String rankInConfig = rankPermission.get(i).replace(".permission", "");
+
+                        setRank(player, rawRankName, rankInConfig);
+                        String setRank = chatUtils.translate(lang.getString("set-rank"));
+                        player.sendMessage(chatUtils.getPrefix() + PlaceholderAPI.setPlaceholders(player, setRank));
+                        break;
+                    } else {
+                        System.out.println("didnt make it -> " + rankPermission.get(i));
+                    }
+                }
                 return true;
             }
         }
@@ -102,9 +116,6 @@ public class SetRank implements CommandExecutor {
         String defaultColor = config.getString(configLocation + ".default-color");
         int charLimit = config.getInt(configLocation + ".char-limit");
         String permission = config.getString(configLocation + ".permission");
-
-        // add default color in front
-        rawName = defaultColor + rawName;
 
         String rank = chatUtils.translateRank(rawName, defaultColor, allowColor, allowFormat);
 
@@ -127,5 +138,12 @@ public class SetRank implements CommandExecutor {
         DataMutateResult result = user.data().add(Node.builder(permission).build());
 
         userManager.saveUser(user);
+    }
+
+    private boolean hasPermission(Player player, String permission) {
+        UserManager userManager = luckPerms.getUserManager();
+
+        User user = userManager.getUser(player.getUniqueId());
+        return user.data().contains(Node.builder(permission).build(), NodeEqualityPredicate.EXACT).asBoolean();
     }
 }
