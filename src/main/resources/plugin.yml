@@ -36,6 +36,10 @@ permissions:
   stencil.setrank.random:
     description: permission to set random rank
     default: true
+
   stencil.delrank:
     description: permission to remove rank
+    default: op
+  stencil.delrank.others:
+    description: permission to delete ranks from other players
     default: op

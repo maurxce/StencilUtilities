@@ -157,6 +157,6 @@ public class SetRank implements CommandExecutor {
         boolean playerHasPermission = user.data().contains(Node.builder(permission).build(), NodeEqualityPredicate.EXACT).asBoolean();
         boolean groupHasPermission = groupManager.getGroup(user.getPrimaryGroup()).data().contains(Node.builder(permission).build(), NodeEqualityPredicate.EXACT).asBoolean();
 
-        return playerHasPermission || groupHasPermission;
+        return playerHasPermission || groupHasPermission || player.isOp();
     }
 }

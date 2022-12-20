@@ -13,12 +13,13 @@ Custom plugin for the "Stencil" Minecraft server
 
 ### Permissions
 
-| Node                   | Default  | Description                                |
-| ---------------------- | -------- | ------------------------------------------ |
-| stencil.reload         | op       | Permission for the /reload command         |
-| stencil.setrank        | everyone | Permission for the base /setrank command   |
-| stencil.setrank.random | everyone | Permission for the random /setrank command |
-| stencil.delrank        | op       | Permission to remove player ranks          |
+| Node                    | Default  | Description                                |
+|-------------------------|----------|--------------------------------------------|
+| stencil.reload          | op       | Permission for the /reload command         |
+| stencil.setrank         | everyone | Permission for the base /setrank command   |
+| stencil.setrank.random  | everyone | Permission for the random /setrank command |
+| stencil.delrank         | op       | Permission to remove player ranks          |
+ | stencil.dlrank.others   | op       | Permission to remove players ranks         |
 
 ### Dependencies
 | Name           | Type       |
