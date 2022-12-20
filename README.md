@@ -1,5 +1,7 @@
 # StencilUtilities
 
+Custom plugin for the "Stencil" Minecraft server
+
 ### Commands
 
 | Name     | Arguments     | Alias         | Description              |
