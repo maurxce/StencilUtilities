@@ -10,7 +10,6 @@ import net.luckperms.api.model.user.User;
 import net.luckperms.api.model.user.UserManager;
 import net.luckperms.api.node.Node;
 import net.luckperms.api.node.NodeEqualityPredicate;
-import net.luckperms.api.util.Tristate;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -54,7 +53,8 @@ public class SetRank implements CommandExecutor {
                     randomRank = randomRankNames.get(new Random().nextInt(randomRankNames.size()));
                 }
 
-                setRank(player, randomRank);
+                String defaultColor = config.getString("ranks.default.default-color");
+                setRank(player, defaultColor + randomRank);
                 String setRank = chatUtils.translate(lang.getString("set-rank"));
                 player.sendMessage(chatUtils.getPrefix() + PlaceholderAPI.setPlaceholders(player, setRank));
                 return true;
