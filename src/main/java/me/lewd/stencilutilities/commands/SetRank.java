@@ -5,6 +5,7 @@ import me.lewd.stencilutilities.Main;
 import me.lewd.stencilutilities.utils.ChatUtils;
 import net.luckperms.api.LuckPerms;
 import net.luckperms.api.model.data.DataMutateResult;
+import net.luckperms.api.model.group.GroupManager;
 import net.luckperms.api.model.user.User;
 import net.luckperms.api.model.user.UserManager;
 import net.luckperms.api.node.Node;
@@ -40,7 +41,7 @@ public class SetRank implements CommandExecutor {
 
         switch(args[0].toLowerCase()) {
             case "random" -> {
-                if (!player.hasPermission("stencil.setrank.random")) {
+                if(!hasPermission(player, "stencil.setrank.random")) {
                     String noPermission = chatUtils.translate(lang.getString("no-permission"));
                     player.sendMessage(chatUtils.getPrefix() + noPermission);
                     return true;
@@ -60,11 +61,12 @@ public class SetRank implements CommandExecutor {
             }
 
             default -> {
-                if (!player.hasPermission("stencil.setrank")) {
+                if(!hasPermission(player, "stencil.setrank")) {
                     String noPermission = chatUtils.translate(lang.getString("no-permission"));
                     player.sendMessage(chatUtils.getPrefix() + noPermission);
                     return true;
                 }
+
                 String rawRankName = args[0];
                 String plainRankName = args[0].replaceAll("(&[a-zA-Z\\d])", "");
 
@@ -148,8 +150,13 @@ public class SetRank implements CommandExecutor {
 
     private boolean hasPermission(Player player, String permission) {
         UserManager userManager = luckPerms.getUserManager();
+        GroupManager groupManager = luckPerms.getGroupManager();
 
         User user = userManager.getUser(player.getUniqueId());
-        return user.data().contains(Node.builder(permission).build(), NodeEqualityPredicate.EXACT).asBoolean();
+
+        boolean playerHasPermission = user.data().contains(Node.builder(permission).build(), NodeEqualityPredicate.EXACT).asBoolean();
+        boolean groupHasPermission = groupManager.getGroup(user.getPrimaryGroup()).data().contains(Node.builder(permission).build(), NodeEqualityPredicate.EXACT).asBoolean();
+
+        return playerHasPermission || groupHasPermission;
     }
 }
