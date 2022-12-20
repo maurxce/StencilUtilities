@@ -19,7 +19,7 @@ Custom plugin for the "Stencil" Minecraft server
 | stencil.setrank         | everyone | Permission for the base /setrank command   |
 | stencil.setrank.random  | everyone | Permission for the random /setrank command |
 | stencil.delrank         | op       | Permission to remove player ranks          |
- | stencil.dlerank.others   | op       | Permission to remove players ranks         |
+ | stencil.delrank.others   | op       | Permission to remove players ranks         |
 
 ### Dependencies
 | Name           | Type       |
