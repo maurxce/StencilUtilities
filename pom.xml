@@ -6,7 +6,7 @@
 
     <groupId>me.lewd</groupId>
     <artifactId>StencilUtilities</artifactId>
-    <version>1.2.1</version>
+    <version>1.2.1d</version>
     <packaging>jar</packaging>
 
     <name>StencilUtilities</name>

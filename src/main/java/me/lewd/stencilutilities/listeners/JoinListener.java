@@ -28,7 +28,8 @@ public class JoinListener implements Listener {
             List<String> randomRankNames = config.getStringList("random-rank-names");
             String name = randomRankNames.get(new Random().nextInt(randomRankNames.size()));
 
-            ranks.set(player.getName(), name);
+            String defaultColor = config.getString("ranks.default.default-color");
+            ranks.set(player.getName(), defaultColor + name);
             Main.instance.reloadConfigs();
         }
     }

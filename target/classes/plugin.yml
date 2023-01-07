@@ -1,6 +1,6 @@
 name: StencilUtilities
 prefix: StencilUtilities
-version: '1.2.1'
+version: '1.2.1d'
 main: me.lewd.stencilutilities.Main
 api-version: 1.19
 authors: [ 2lewd4u ]
